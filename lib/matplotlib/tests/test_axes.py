@@ -1910,11 +1910,26 @@ class TestScatter(object):
                     xshape=xshape, yshape=yshape,
                     get_next_color_func=get_next_color)
 
+    @image_comparison(baseline_images=['scatter_non_positive_values_log'],
+                      remove_text=True,
+                      extensions=['png'])
+    def test_scatter_non_positive_values_log(self):
+        x = [0, 2, 3, 4]
+        y = [0, 10, 50, 100]
+
+        fig, ax = plt.subplots()
+
+        ax.scatter(x, y)
+        ax.set_xscale('log')
+        ax.set_yscale('log')
+
 
 def _params(c=None, xshape=(2,), yshape=(2,), **kwargs):
     edgecolors = kwargs.pop('edgecolors', None)
     return (c, edgecolors, kwargs if kwargs is not None else {},
             xshape, yshape)
+
+
 _result = namedtuple('_result', 'c, colors')
 
 

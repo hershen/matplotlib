@@ -4483,6 +4483,12 @@ optional.
                 self.set_ymargin(0.05)
 
         self.add_collection(collection)
+
+        self.dataLim.update_from_data_xy(offsets,
+                                         self.ignore_existing_data_limits,
+                                         updatex=True, updatey=True)
+        self.ignore_existing_data_limits = False
+
         self.autoscale_view()
 
         return collection
